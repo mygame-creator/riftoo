@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Settings</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="panel.css">
+  <style>
+    body { padding: 2rem; color: #f1f1f5; font-family: system-ui, sans-serif; background: #0b0b10; }
+    .settings-grid { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; }
+    .nav { display: flex; flex-direction: column; gap: 0.5rem; }
+    .nav-item {
+      padding: 0.8rem; border-radius: 8px; cursor: pointer;
+      color: #aaa; transition: 0.2s; border: none; background: none;
+      text-align: left; font-size: 0.9rem;
+    }
+    .nav-item:hover { background: #1c1c27; color: #fff; }
+    .nav-item.active { background: var(--accent); color: #fff; }
+    .section { display: none; animation: fadeIn 0.2s ease-out; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .group { margin-bottom: 2rem; border-bottom: 1px solid #2a2a3a; padding-bottom: 1.5rem; }
+    .group h3 { margin: 0 0 1rem 0; font-size: 1.1rem; color: var(--accent); }
+    .row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .row-label { font-size: 0.9rem; color: #ccc; }
+    .field { display: flex; gap: 0.5rem; align-items: center; }
+    .field input {
+      background: #0b0b10; border: 1px solid #2a2a3a; color: #fff;
+      padding: 0.4rem; border-radius: 4px; outline: none;
+    }
+    .btn {
+      background: #2a2a3a; color: #fff; border: none;
+      padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;
+      font-size: 0.8rem; transition: 0.2s;
+    }
+    .btn:hover { background: #3a3a4a; }
+    .btn-danger { color: #ff4e4e; }
+    .btn-danger:hover { background: #442222; }
+
+    .profile-card {
+      background: #16161e; padding: 1rem; border-radius: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.8rem; border: 1px solid #2a2a3a;
+    }
+    .profile-info { display: flex; align-items: center; gap: 1rem; }
+    .profile-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-grid">
+    <div class="nav">
+      <button class="nav-item active" data-section="general">General</button>
+      <button class="nav-item" data-section="appearance">Appearance</button>
+      <button class="nav-item" data-section="account">Account</button>
+      <button class="nav-item" data-section="profiles">Profiles</button>
+      <button class="nav-item" data-section="extensions">Extensions</button>
+    </div>
+
+    <div class="content">
+      <!-- GENERAL -->
+      <div id="section-general" class="section active">
+        <h2>General Settings</h2>
+        <div class="group">
+          <h3>Browser</h3>
+          <div class="row">
+            <span class="row-label">Search Engine</span>
+            <div class="field">
+              <select id="set-engine" class="btn">
+                <option value="google">Google</option>
+                <option value="duckduckgo">DuckDuckGo</option>
+                <option value="bing">Bing</option>
+                <option value="brave">Brave</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <span class="row-label">Adblock</span>
+            <input type="checkbox" id="set-adblock">
+          </div>
+        </div>
+      </div>
+
+      <!-- APPEARANCE -->
+      <div id="section-appearance" class="section">
+        <h2>Appearance</h2>
+        <div class="group">
+          <h3>Theming</h3>
+          <div class="row">
+            <span class="row-label">Accent Color</span>
+            <div class="field">
+              <input type="color" id="set-accent">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCOUNT -->
+      <div id="section-account" class="section">
+        <h2>Account</h2>
+        <div class="group">
+          <h3>Sync</h3>
+          <div class="row">
+            <span class="row-label">Sync URL</span>
+            <input type="text" id="set-syncurl">
+          </div>
+          <div class="row">
+            <span class="row-label">Username</span>
+            <input type="text" id="set-syncuser">
+          </div>
+          <button class="btn" id="btn-signout" style="margin-top: 1rem;">Sign Out</button>
+        </div>
+      </div>
+
+      <!-- PROFILES -->
+      <div id="section-profiles" class="section">
+        <h2>Profiles</h2>
+        <div class="group">
+          <h3>Manage Profiles</h3>
+          <div id="profile-list"></div>
+          <button class="btn" id="btn-create-profile" style="margin-top: 1rem; width: 100%;">+ Create New Profile</button>
+        </div>
+      </div>
+
+      <!-- EXTENSIONS -->
+      <div id="section-extensions" class="section">
+        <h2>Extensions</h2>
+        <div class="group">
+          <h3>Loaded Extensions</h3>
+          <div id="ext-list"></div>
+          <button class="btn" id="btn-load-ext" style="margin-top: 1rem; width: 100%;">+ Load Extension Folder</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

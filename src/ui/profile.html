@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="panel.css">
+  <style>
+    body { padding: 1.5rem; color: #f1f1f5; font-family: system-ui, sans-serif; }
+    .header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 1.2rem; color: #fff;
+    }
+    .info h2 { margin: 0; font-size: 1.1rem; }
+    .info p { margin: 0; font-size: 0.8rem; color: #aaa; }
+    .section { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .section-title { font-size: 0.7rem; text-transform: uppercase; color: #666; letter-spacing: 0.05rem; margin-bottom: 0.5rem; }
+    .btn {
+      background: #2a2a3a; color: #fff; border: none;
+      padding: 0.6rem; border-radius: 4px; cursor: pointer;
+      text-align: left; font-size: 0.9rem; transition: 0.2s;
+    }
+    .btn:hover { background: #3a3a4a; }
+    .btn-danger { color: #ff4e4e; }
+    .btn-danger:hover { background: #442222; }
+    .field { display: flex; gap: 0.5rem; }
+    .field input {
+      flex: 1; background: #0b0b10; border: 1px solid #2a2a3a;
+      color: #fff; padding: 0.5rem; border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div id="avatar" class="avatar">?</div>
+    <div class="info">
+      <h2 id="name">Loading...</h2>
+      <p id="status">Status: Unknown</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Profile</div>
+    <div class="field">
+      <input type="text" id="rename-input">
+      <button class="btn" id="btn-rename">Rename</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Account</div>
+    <button class="btn" id="btn-sync">Sync Now</button>
+    <button class="btn btn-danger" id="btn-signout">Sign Out</button>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+</html>

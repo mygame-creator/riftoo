@@ -1,0 +1,116 @@
+body { overflow: hidden; user-select: none; }
+input { user-select: text; }
+
+#side {
+  position: fixed; inset: 0 auto 0 0; width: 60px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 44px 0 12px; background: #000; border-right: 1px solid #1a1a1a;
+  -webkit-app-region: drag;
+}
+#side nav { display: flex; flex-direction: column; gap: 6px; }
+#side button { -webkit-app-region: no-drag; }
+.spacer { flex: 1; }
+
+.sb {
+  width: 42px; height: 42px; display: grid; place-items: center; position: relative;
+  color: var(--dim); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+}
+.sb:hover, .sb:focus-visible {
+  color: #fff;
+  background: #111;
+  outline: none;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px var(--accent));
+}
+.sb.on {
+  color: #fff;
+  background: #111;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+.sb.on::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+#logo { color: var(--accent); margin-bottom: 10px; width: 42px; height: 42px; display: grid; place-items: center; filter: drop-shadow(0 0 5px var(--accent)); }
+
+#top { position: fixed; left: 60px; right: 0; top: 0; height: 84px; background: var(--bg); }
+
+#tabs {
+  height: 38px; display: flex; align-items: flex-end; gap: 2px;
+  padding: 6px 0 0 8px; -webkit-app-region: drag; overflow: hidden;
+}
+body.other #tabs { padding-right: 150px; }
+body.mac #tabs { padding-left: 14px; }
+
+.tab {
+  flex: 0 1 210px; min-width: 52px; height: 32px; display: flex; align-items: center; gap: 8px;
+  padding: 0 22px 0 12px; background: var(--surface); color: var(--dim); cursor: default;
+  -webkit-app-region: no-drag;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%);
+  transition: color .15s, background-color .15s;
+}
+.tab:hover { color: var(--text); }
+.tab.on {
+  color: var(--text);
+  background: linear-gradient(var(--accent), var(--accent)) bottom / 100% 2px no-repeat, var(--raise);
+}
+.tab.zz { opacity: .55; font-style: italic; }
+.tab .fav { flex: none; width: 16px; height: 16px; display: grid; place-items: center; }
+.tab .fav img { width: 16px; height: 16px; }
+.tab .dot { width: 8px; height: 8px; background: var(--dim); transform: rotate(45deg); }
+.tab .spin { width: 12px; height: 12px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; }
+.tab .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tab .x { flex: none; width: 18px; height: 18px; display: grid; place-items: center; opacity: 0; color: var(--dim); }
+.tab:hover .x, .tab.on .x { opacity: 1; }
+.tab .x:hover { color: var(--accent); }
+#newtab { -webkit-app-region: no-drag; flex: none; width: 30px; height: 30px; display: grid; place-items: center; color: var(--dim); margin-left: 4px; }
+#newtab:hover { color: var(--accent); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#bar {
+  height: 46px; display: flex; align-items: center; gap: 4px; padding: 0 10px;
+  background: var(--raise); border-bottom: 1px solid var(--line);
+}
+.nb { width: 32px; height: 32px; display: grid; place-items: center; color: var(--dim); border-radius: 3px; }
+.nb:hover { color: var(--text); background: var(--surface); }
+.nb:disabled { opacity: .35; cursor: default; }
+.nb:disabled:hover { background: none; color: var(--dim); }
+#star.on { color: var(--accent); }
+#star.on svg { fill: currentColor; }
+#url {
+  flex: 1; height: 32px; margin: 0 6px; padding: 0 14px;
+  background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; font: inherit;
+}
+#url:focus { outline: none; border-color: var(--accent); }
+
+.sb.avatar {
+  background: var(--accent);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 5px var(--accent));
+}
+.sb.avatar:hover {
+  filter: brightness(1.2) drop-shadow(0 0 10px var(--accent));
+  transform: scale(1.1);
+}
+.sb.avatar.on {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 15px var(--accent);
+}

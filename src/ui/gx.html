@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>GX Control</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <h1>GX Control</h1>
+  <p class="sub">Keep Rift light while you game, stream or study.</p>
+
+  <section>
+    <h2>Resources</h2>
+    <div class="stat"><span>Memory</span><b id="memT">-</b></div>
+    <div class="meter"><i id="memB"></i></div>
+    <div class="stat" style="margin-top:10px"><span>CPU</span><b id="cpuT">-</b></div>
+    <div class="meter"><i id="cpuB"></i></div>
+    <div class="stat" style="margin-top:10px"><span>Tabs</span><b id="tabT">-</b></div>
+  </section>
+
+  <section>
+    <h2>Memory limiter</h2>
+    <div class="row"><label for="limiter">Put idle tabs to sleep<small>Sleeping tabs free their memory and reload when opened.</small></label><input class="switch" type="checkbox" id="limiter"></div>
+    <div class="row"><label for="minutes">Sleep after (minutes)</label><input class="num" type="number" id="minutes" min="1" max="240"></div>
+    <div class="row"><label for="cap">Memory cap (MB)<small>Sleeps the oldest tab above this. 0 = off.</small></label><input class="num" type="number" id="cap" min="0" step="256"></div>
+  </section>
+
+  <section>
+    <h2>Browsing</h2>
+    <div class="row"><label for="adblock">Block known ad and tracker hosts</label><input class="switch" type="checkbox" id="adblock"></div>
+    <label class="field"><span>Search engine</span>
+      <select id="engine"><option value="google">Google</option><option value="duckduckgo">DuckDuckGo</option><option value="bing">Bing</option><option value="brave">Brave Search</option></select>
+    </label>
+    <div class="field"><span>Accent colour</span><div class="swatches" id="swatches"></div></div>
+  </section>
+
+  <section>
+    <h2>Sync</h2>
+    <p class="sub">Bookmarks and history, encrypted on this device before upload. Run <code>npm run server</code> or host the server yourself.</p>
+    <label class="field"><span>Server address</span><input type="url" id="sUrl" placeholder="https://sync.example.com"></label>
+    <label class="field"><span>Username</span><input type="text" id="sUser" autocomplete="off"></label>
+    <label class="field"><span>Passphrase (never leaves this device)</span><input type="password" id="sPass" autocomplete="off"></label>
+    <button class="btn" id="sBtn">Sync now</button>
+    <div class="msg" id="sMsg" role="status"></div>
+  </section>
+
+  <script src="gx.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>

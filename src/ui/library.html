@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>Library</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <h1>Library</h1>
+  <div class="tabs" role="tablist">
+    <button id="tB" class="on" role="tab">Bookmarks</button>
+    <button id="tH" role="tab">History</button>
+  </div>
+  <input id="filter" type="text" placeholder="Filter" aria-label="Filter">
+  <ul class="list" id="list"></ul>
+  <p style="margin-top:16px"><button class="btn ghost" id="clear" hidden>Clear history</button></p>
+  <script src="library.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>

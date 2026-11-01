@@ -1,0 +1,23 @@
+body {
+  display: grid; place-items: center; min-height: 100%;
+  background:
+    linear-gradient(115deg, transparent 0 58%, color-mix(in srgb, var(--accent) 14%, transparent) 58% 58.4%, transparent 58.4%),
+    linear-gradient(115deg, transparent 0 64%, color-mix(in srgb, var(--accent) 7%, transparent) 64% 70%, transparent 70%),
+    var(--bg);
+}
+main { width: min(640px, 90vw); display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 8vh 0; }
+h1 { font: 700 clamp(56px, 11vw, 112px)/.9 var(--font); letter-spacing: .06em; transform: skewX(-8deg); }
+#q {
+  width: 100%; height: 52px; padding: 0 22px; background: var(--surface); color: var(--text);
+  border: 1px solid var(--line); font: 500 18px var(--font);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+#q:focus { outline: none; border-color: var(--accent); background: var(--raise); }
+#dial { list-style: none; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
+#dial button {
+  width: 100%; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: var(--surface); border: 1px solid var(--line); transition: border-color .15s, background .15s;
+}
+#dial button:hover, #dial button:focus-visible { border-color: var(--accent); background: var(--raise); outline: none; }
+#dial .mono { width: 36px; height: 36px; display: grid; place-items: center; background: var(--accent); color: #fff; font: 700 18px var(--font); clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+#dial .n { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--dim); }

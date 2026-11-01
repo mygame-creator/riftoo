@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Welcome to Rift</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #0b0b10;
+      color: #f1f1f5;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+    }
+    .card {
+      background: #16161e;
+      padding: 2.5rem;
+      border-radius: 24px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      border: 1px solid #2a2a3a;
+      position: relative;
+      overflow: hidden;
+    }
+    h1 {
+      color: var(--accent);
+      margin: 0 0 1.5rem 0;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      margin: 0 0 1rem 0;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .view-container {
+      position: relative;
+      min-height: 300px;
+    }
+    .view {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(20px);
+    }
+    .view.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+    .view.prev {
+      transform: translateX(-20px);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      text-align: left;
+    }
+    .field label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-left: 4px;
+    }
+    .field input {
+      background: #0b0b10;
+      border: 1px solid #2a2a3a;
+      color: #fff;
+      padding: 0.8rem;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .field input:focus {
+      border-color: var(--accent);
+    }
+    .field input.subtle {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: filter 0.2s;
+    }
+    .btn:hover { filter: brightness(1.2); }
+    .btn.secondary {
+      background: #2a2a3a;
+      color: #f1f1f5;
+    }
+    .btn.secondary:hover { background: #3a3a4a; }
+
+    .link {
+      display: block;
+      margin-top: 1.5rem;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .link:hover { color: #fff; }
+
+    #error {
+      color: #ff4e4e;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      min-height: 1.2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>RIFT</h1>
+
+    <div class="view-container">
+      <!-- STEP 1: Identification -->
+      <div id="view-step1" class="view active">
+        <h2>Sign in</h2>
+        <div class="field">
+          <label>Server URL</label>
+          <input type="text" id="url" class="subtle" value="http://localhost:8787">
+        </div>
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="user" placeholder="Enter your username" autofocus>
+        </div>
+        <div class="btn-row">
+          <button class="btn" id="btn-next">Next</button>
+        </div>
+        <a class="link" id="link-local">Continue without account</a>
+      </div>
+
+      <!-- STEP 2: Authentication -->
+      <div id="view-step2" class="view">
+        <h2>Welcome, <span id="display-user"></span></h2>
+        <div class="field">
+          <label>Passphrase</label>
+          <input type="password" id="pass" placeholder="Enter your passphrase">
+        </div>
+        <div class="btn-row">
+          <button class="btn secondary" id="btn-back">Back</button>
+          <button class="btn" id="btn-signin">Sign In</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Local Setup -->
+      <div id="view-local" class="view">
+        <h2>Local Profile</h2>
+        <div class="field">
+          <label>Display Name</label>
+          <input type="text" id="local-name" placeholder="e.g. Gamer">
+        </div>
+        <div class="btn-row">
+          <button class="btn secondary" id="btn-local-back">Back</button>
+          <button class="btn" id="btn-local">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="error"></div>
+  </div>
+  <script src="welcome.js"></script>
+</body>
+</html>
